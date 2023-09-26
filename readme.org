@@ -46,11 +46,11 @@ Når I skal udvælge features, skal I anvende /MoSCoW/-metoden.
 
 De fremhævede bogstaver står for
 
-- *M*​ust have
+- *M* ust have
 
-  Must står så igen for *M*​inimum *U*​sable *S*​ubse​*T*. Dette er minimumskretierierne for overhovedet at udvikle og levere projektet. Hvis ikke alle punkterne i denne liste er opfyldt, er der ikke noget projekt.
+  Must står så igen for *M* inimum *U* sable *S* ubse *T*. Dette er minimumskretierierne for overhovedet at udvikle og levere projektet. Hvis ikke alle punkterne i denne liste er opfyldt, er der ikke noget projekt.
   
-- *S*​hould have
+- *S* hould have
 
   Punkter herunder kan kategoriseres som
 
@@ -60,11 +60,11 @@ De fremhævede bogstaver står for
 
   - projektet kræver måske andre ineffektive løsninger uden denne feature
   
-- *C*​ould have
+- *C* ould have
 
   Her er der tale om ønskede features, men som ikke er lige så vigtige som de tidligere. Projektet vil fungere uden.
   
-- *W*​on't have this time
+- *W* on't have this time
 
   Her er der tale om features, som på papiret ville passe ind i projektet, men som med vilje ikke tages med i første omgang. features her kan komme med i en senere opdatering eller lignende.
 
