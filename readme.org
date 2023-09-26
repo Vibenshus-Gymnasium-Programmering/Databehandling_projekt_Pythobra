@@ -48,7 +48,7 @@ De fremhævede bogstaver står for
 
 - *M* ust have
 
-  Must står så igen for *M* inimum *U* sable *S* ubse *T*. Dette er minimumskretierierne for overhovedet at udvikle og levere projektet. Hvis ikke alle punkterne i denne liste er opfyldt, er der ikke noget projekt.
+  Must står så igen for *M* inimum *U* sable *S* ubse *T*. Dette er minimumskriterierne for overhovedet at udvikle og levere projektet. Hvis ikke alle punkterne i denne liste er opfyldt, er der ikke noget projekt.
   
 - *S* hould have
 
