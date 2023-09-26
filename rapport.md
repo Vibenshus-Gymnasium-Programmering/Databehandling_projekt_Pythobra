@@ -1,0 +1,21 @@
+---
+title: Rapport til `pythobra`-projektet
+author: Iron Man og Hulk
+---
+
+# MoSCoW
+
+Beskriv hvilke features jeres program skal have og ikke have.
+
+## Must have
+
+## Should have
+
+## Could have
+
+## Won't have this time
+
+# Manual til programmet
+Beskriv, hvordan man bruger programmet.
+
+

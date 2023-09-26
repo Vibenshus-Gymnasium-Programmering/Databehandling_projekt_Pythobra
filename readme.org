@@ -1,0 +1,132 @@
+#+title: Pythobra - Geogebra light udviklet i ~pyside6~, ~matplotlib~ og ~sympy~
+#+subtitle: Programmering
+#+author: Vibenshus Gymnasium
+#+options: ^:{}
+
+* Introduktion
+
+I den forgangne tid er I blevet præsenteret for bibliotekerne =pyside6= til grafiske brugerflader, =matplotlib= til plot præsentation/plot af data samt =sympy= til (symbolsk) behandling af matematiske udtryk i python.
+
+I dette projekt skal I kombinere den viden, I har fået, til at udvikle jeres egne versioner af programmet *pythobra*, en light udgave af /geogebra/. Hvad jeres version af programmet præcis skal kunne, er op til jer, men mere om det i et senere afsnit. Tanken med projektet er dog, :
+
+- at selve den grafiske brugerflade skal udvikles i =pyside6=,
+- at =sympy= skal stå for de matematiske beregninger etc,
+- og at =matplotlib= skal stå for at vise de grafiske repræsentationer.
+
+*I skal denne gange arbejde sammen i mindre grupper af helst 2 personer, og I skal samarbejde på den fælles kode gennem git og github.*
+
+* Inspiration
+I kende allerede =geogebra= fra jeres matematikundervisning, men her er alligevel to eksempler på udseendet. Et fra geogebra 5 og et fra geogebra 6.
+
+Geogebra 5
+
+[[./img/geogebra_5.png]]
+
+Geogebra 6
+
+[[./img/geogebra_6.png]]
+
+Som I kan se på figurerne indholder geogebra typisk en tegneblok, en række knapper, et algebravindue samt et inputfelt. Jeres program pythobra behøver ikke ligne geogebra, men noget af funktionaliteten skal I implementere på én eller anden måde.
+
+* Projektdesign
+
+I jeres gruppe skal I blive enige om, hvilke features fra geogebra, som jeres pythobra-program også skal have og om der skal være andre features, som geogebra ikke har. Det kunne jo for eksempel være noget a la
+
+- at indtaste en funktionsforskrift og så plotte den i koordinatsystem
+- at plotte indholdet fra en csv-fil
+- at løse en ligning eller et ligningsystem
+- at plotte et punkt
+- at gemme de indtastede funktioner i en liste
+- etc
+- etc
+
+Når I skal udvælge features, skal I anvende /MoSCoW/-metoden.
+
+** MoSCoW-metoden
+
+De fremhævede bogstaver står for
+
+- *M*​ust have
+
+  Must står så igen for *M*​inimum *U*​sable *S*​ubse​*T*. Dette er minimumskretierierne for overhovedet at udvikle og levere projektet. Hvis ikke alle punkterne i denne liste er opfyldt, er der ikke noget projekt.
+  
+- *S*​hould have
+
+  Punkter herunder kan kategoriseres som
+
+  - vigtige men ikke vitale
+
+  - projektets løsning vil virke, men vil være mere besværlig uden denne feature
+
+  - projektet kræver måske andre ineffektive løsninger uden denne feature
+  
+- *C*​ould have
+
+  Her er der tale om ønskede features, men som ikke er lige så vigtige som de tidligere. Projektet vil fungere uden.
+  
+- *W*​on't have this time
+
+  Her er der tale om features, som på papiret ville passe ind i projektet, men som med vilje ikke tages med i første omgang. features her kan komme med i en senere opdatering eller lignende.
+
+** Model View Controller
+Som I har hørt det før, er det en god idé at adskille brugerflade fra logik, og vi har før arbejdet med MVC-designet.
+
+- *Modellen* skal indeholde jeres backend, altså programmet som kan gemme matematiske objekter og udføre matematiske operationer på dem. Det kunne f.eks. være at gemme en ligning, som så senere kan løses for en variabel. Det kunne også være at indlæse og gemme en dataserie fra en csv-fil til senere brug. Endelig kunne det også være at plotte punkter og funktioner i et koordinatsystem vha =matplotlib=.
+- *View* skal indeholde den rene grafiske brugerflade. Dette kan enten være en =ui=-fil eller en =py=-fil konverteret fra en =ui=-fil, eller det kan være en =py=-fil skrevet fra bunden. Når man skal indsætte =matplotlib=-plots i =pyside6= er det nemmest at skrive =view=-filen fra bunden.
+- *Controller* skal stå for at sammenkoble backend og frontend, således at man f.eks. kan indtaste en ligning vha. frontenden, som så gemmes i backend, og hvis ligningen skal løses, så gøres det vha. backenden mens svaret præsenteres gennem frontenden.
+
+Jeg har oprettet 3 skabeloner til de forskellige dele. Jeg har kaldt dem =pythobra_backend=, som står for modellen, =pythobra_frontend=, som står for viewet og endelig =pythobra_controller=, som nok giver sig selv. :)
+
+Hvis I kører filen =pythobra_controller.py= (altså åbner den i pycharm og kører som I plejer) skulle I gerne kunne se prototypen. Den skulle gerne se nogenlunde således ud:
+
+[[./img/prototype.png]]
+
+Det skal siges, at viewet(frontenden) er kodet direkte i python. I er selvfølgelig velkomne til at udvikle den grafiske brugerflade vha =QtDesigner=, men så må I lige lave om i resten af koden, og få det til at passe.
+
+** Den grafiske brugerflade
+I mappen =Pyside6_matplotlib_eksempler= kan I finde nogle eksempler på, hvordan pyside6 og matplotlib kan kombineres. Det er særligt brugbart, når I skal plotte noget i jeres program.
+
+* Gruppearbejde
+Som noget nyt skal I i dette projekt samarbejde om udviklingen af jeres egne versioner af =pythobra=, og I skal gøre det ved hjælp af =git= og =github=. Dette er både nyt for jer og nyt for mig, så vi må se, hvordan det kommer til at gå. For at gøre det så simpelt som muligt, vil jeg her præsentere jer for en simpel arbejdsgang, som I skal anvende.
+
+** Git-arbejdsgang
+Når I arbejder med projektet, skal I have følgende grene (branches) i jeres git repo:
+
+- main :: Denne gren indeholder kun versioner af jeres program, som er klar til udgivelse (release ready). I kan give hver ny version af programmet et =tag=.
+- develop :: Dette er jeres primære udviklingsgren og i denne det meste arbejde skal ligge. Når =develop= er i en tilstand, som kan bruges til udgivelse, kan I checke =main= ud og =merge= main med =develop=.
+- feature-* :: Hver gang I skal udvikle en ny feature til jeres program, skal I lave en ny gren, som starter fra =develop=. Giv jeres nye gren et passende navn. Jeg vil foreslå noget lignende:
+  - *brugernavn/model/solve_equation* hvis man skal udvikle en metode/funktion til jeres =pythobra_model=-bibliotek, som kan løse en given ligning.
+  - *brugernavn/view/clear_output_button* hvis man skal indsætte en knap i den grafiske brugerflade, som skal kunne slette teksten i outputfeltet.
+  - *brugernavn/controller/connect_solve_button_with_model* hvis man skal sørge for at forbinde knappen "Solve Equation" i brugerfladen med metoden =solve_equation= i modellen og så sende svaret til outputfeltet.
+
+Når jeres nye feature er færdig i jeres featurebranch, skal I skifte til =develop= og så =merge= jeres nye feature ind i =develop=. Når alt er gået godt med dette, skal I slette jeres gamle brugte featurebranch.
+
+Det er en rigtig god idé at lave nye forgreninger ofte og sørge for at der kun er en feature med i hver forgrening.
+
+I kan se en ret god forklaring af arbejdsgangen i den følgende video (Den er lidt lang, så sæt hastigheden op til 2). Når der tales om master branch skal I bare oversætte det til main branch.
+
+[[https://youtu.be/BF2OHMM86Ik?si=yvrKmMZow_u33jNM][Git Crash Course - An Effective Git Workflow for Small Teams]]
+
+
+Hvis I får problemer, særligt merge conflicts, så se nærmere i denne video.
+
+[[https://youtu.be/NXaEImbo-n8?si=4vY51YLEZXtofe4S][Git Crash Course - Common Problems, Merge Conflicts]]
+
+
+Hvis I har brug for et brush up på brugen af git så se den næste video.
+
+[[https://youtu.be/kmGsHjQ2wsY?si=C6QpAp3Beglubn3l][Git Crash Course for Beginners]]
+
+** Journal/rapport
+Ud over at I skal udvikle et nyt program sammen i grupper, så skal I også skrive en kort journal/rapport. Denne journal skal i hvert fald indeholde en beskrivelse af hvilke features, I vil have med i programmet, udvalgt efter MoSCoW-metoden, og der skal være en kort manual til brugen af programmet. Jeg har oprettet to filer, =rapport.org= og =rapport.md=, som I kan skrive jeres rapport i. Den ene bruger org mode-syntaks, mens den anden bruger markdown. I skal bare vælge den ene af dem. Den udgave, som I ikke bruger, kan I bare slette fra jeres repo.
+
+
+
+God arbejdslyst med projektet.
+Jeg glæder mig til at se, hvad I får udviklet.
+
+/jde
+
+# Local Variables:
+# jinx-languages: "da_DK"
+# End:
