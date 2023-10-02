@@ -1,6 +1,5 @@
 import sympy as sp
 import matplotlib.pyplot as plt
-from sympy.core.assumptions import _prepare_class_assumptions
 
 
 class PythobraBackend:
